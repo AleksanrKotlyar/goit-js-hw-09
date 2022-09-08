@@ -7,6 +7,7 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
+  enableSeconds: true,
   onClose(selectedDates) {
     console.log(selectedDates[0]);
     onCheckDate(selectedDates);
@@ -30,11 +31,11 @@ let remainingTime = 0;
 function onCheckDate(selectedDates) {
   selectedDate = selectedDates[0].getTime();
   currentDate = options.defaultDate.getTime();
-  if (selectedDate > currentDate) {
+  if (selectedDate > currentDate + 2000) {
     btnStartRef.disabled = false;
     return;
   }
-  Notify.info('Please choose a date in the future');
+  Notify.failure('Please choose a date in the future');
 }
 
 function onClickBtnStartTimer() {
