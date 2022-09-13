@@ -45,6 +45,7 @@ function onClickBtnStartTimer() {
       return;
     } else {
       btnStartRef.disabled = true;
+      dateInput.disabled = true;
       currentDate += 1000;
       remainingTime = Math.floor(selectedDate - currentDate);
 
