@@ -15,14 +15,10 @@ function onCreatePromise(e) {
   for (let i = 1; i <= amount.value; i += 1) {
     createPromise(i, newDelay)
       .then(({ position, delay }) => {
-        setTimeout(() => {
-          Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
-        }, delay);
+        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
-        setTimeout(() => {
-          Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
-        }, delay);
+        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
     newDelay = newDelay + Number(step.value);
   }
@@ -31,10 +27,12 @@ function onCreatePromise(e) {
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
-    if (shouldResolve) {
-      resolve({ position, delay });
-    } else {
-      reject({ position, delay });
-    }
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve({ position, delay });
+      } else {
+        reject({ position, delay });
+      }
+    }, delay);
   });
 }
