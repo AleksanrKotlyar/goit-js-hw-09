@@ -5,6 +5,7 @@ formRef.addEventListener('submit', onCreatePromise);
 
 function onCreatePromise(e) {
   e.preventDefault();
+
   const {
     elements: { delay, step, amount },
   } = e.currentTarget;
